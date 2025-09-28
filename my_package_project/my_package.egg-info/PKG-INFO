@@ -1,0 +1,7 @@
+Metadata-Version: 2.4
+Name: my_package
+Version: 0.1
+Summary: A simple greeting package
+Author: Your Name
+Dynamic: author
+Dynamic: summary
