@@ -1,1 +1,1 @@
-# bio
+# super easy to setup if u dont have an extra chromosone, just modify my data with your personal one in the js script, also easily modifiable css code, just read it once and u'll know how to customize it
