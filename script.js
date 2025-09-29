@@ -40,10 +40,10 @@ function initializeCursor() {
     
     if (!cursor) return;
     
-    let mouseX = 960;
-    let mouseY = 540;
-    let cursorX = 960;
-    let cursorY = 540;
+    let mouseX = 840;
+    let mouseY = 300;
+    let cursorX = 300;
+    let cursorY = 300;
     
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
