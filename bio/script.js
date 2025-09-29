@@ -12,10 +12,12 @@ let spotifyProgress = 0;
 let spotifyDuration = 0;
 let spotifyCurrentTime = 0;
 let progressInterval = null;
-let backgroundMusic = null;
+let backgroundMusic = false;
 let hasEnteredSite = false;
 let isMuted = false;
 let currentSpotifyData = null;
+
+
 
 function copyDiscordUsername() {
     const username = 'rendr.tt';
@@ -29,10 +31,7 @@ function copyDiscordUsername() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    initializeCursor();
-    initializeEntryPage();
-});
+
 
 function initializeCursor() {
     const cursor = document.querySelector('.cursor');
@@ -77,8 +76,8 @@ function initializeEntryPage() {
     const entryPage = document.getElementById('entry-page');
     const entryButton = document.getElementById('entry-button');
     const mainSite = document.getElementById('main-site');
-    const audioControl = document.getElementById('audio-control');
-    const audioIcon = document.getElementById('audio-icon');
+    let audioControl = document.getElementById('audio-control');
+    let audioIcon = document.getElementById('audio-icon');
     
     backgroundMusic = document.getElementById('background-music');
     backgroundMusic.volume = 0.8; // Set volume to 80%
@@ -87,6 +86,7 @@ function initializeEntryPage() {
         e.stopPropagation();
         toggleAudio();
     });
+    
     
     entryButton.addEventListener('click', function() {
         if (hasEnteredSite) return;
@@ -100,9 +100,9 @@ function initializeEntryPage() {
             const playPromise = backgroundMusic.play();
             if (playPromise !== undefined) {
                 playPromise.then(() => {
-                    console.log('Musique démarrée avec succès');
+                    console.log('Music started successfully.');
                 }).catch(error => {
-                    console.log('Erreur lors du démarrage de la musique:', error);
+                    console.log('error:', error);
                 });
             }
             
@@ -122,37 +122,31 @@ function initializeEntryPage() {
             
             initializeMainSite();
         }, 800);
+        
     });
-
+    
     function toggleAudio() {
-        const audioControl = document.getElementById('audio-control');
-        const audioIcon = document.getElementById('audio-icon');
-        
-        isMuted = !isMuted;
-        
-        if (isMuted) {
-            if (backgroundMusic) {
-                backgroundMusic.pause();
-            }
-            audioIcon.className = 'fas fa-volume-mute';
-            audioControl.classList.add('muted');
-            console.log('Musique coupée');
-        } else {
-            if (backgroundMusic && hasEnteredSite) {
-                const playPromise = backgroundMusic.play();
-                if (playPromise !== undefined) {
-                    playPromise.then(() => {
-                        console.log('Musique remise');
-                    }).catch(error => {
-                        console.log('Erreur lors de la remise de la musique:', error);
-                    });
-                }
-            }
-            audioIcon.className = 'fas fa-volume-up';
-            audioControl.classList.remove('muted');
-        }
+    if (backgroundMusic.paused) {
+        backgroundMusic.muted = false;
+        backgroundMusic.play().then(() => {
+            console.log("Music resumed.");
+            audioIcon.className = "fas fa-volume-up";
+            audioControl.classList.remove("muted");
+        }).catch(err => console.log("Error resuming:", err));
+    } else {
+        backgroundMusic.pause();
+        backgroundMusic.muted = true;
+        console.log("Music paused.");
+        audioIcon.className = "fas fa-volume-mute";
+        audioControl.classList.add("muted");
     }
+    
+
 }
+
+
+}
+
 
 function initializeMainSite() {
     initializeTypingEffect();
@@ -293,7 +287,7 @@ function updateDiscordUI(userData) {
     
     if (username && (userData.discord_user || userData.user)) {
         const user = userData.discord_user || userData.user;
-        username.textContent = user.global_name || user.username || '43cs';
+        username.textContent = user.global_name || user.username || 'rendr.tt';
     }
     
     const status = userData.discord_status || 'offline';
