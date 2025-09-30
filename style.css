@@ -447,8 +447,10 @@ body {
     display: block;
     margin-bottom: 4px;
     white-space: nowrap;
+    overflow-y:auto;
     overflow: hidden;
     text-overflow: ellipsis;
+    -webkit-overflow-scrolling: touch;
 }
 
 .activity {
