@@ -734,7 +734,7 @@ body {
 }
 
 .main-site * {
-    cursor: none !important;
+    cursor: dot !important;
 }
 
 .entry-page {
@@ -769,7 +769,7 @@ body {
     text-align: center;
     transition: opacity 0.3s ease;
     margin-bottom: 2rem;
-    cursor: pointer;
+    cursor: dot;
 }
 
 .entry-text:hover {
