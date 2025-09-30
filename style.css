@@ -39,9 +39,10 @@ html {
 
 body {
     min-height: 100vh;
-    height: 100vh;
+    height: auto;
     background: #000000;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y:auto;
     max-width: 100%;
     cursor: none;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -249,8 +250,8 @@ body {
 /* Main site entrance animations */
 .main-site {
     transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
-    height: 100vh;
-    overflow: hidden;
+    height: auto;
+    overflow: visible;
 }
 
 .main-site.fade-in {
@@ -259,7 +260,7 @@ body {
 
 .main-container {
     display: flex;
-    height: 100vh;
+    height:auto;
     position: relative;
     z-index: 10;
     gap: 40px;
@@ -268,7 +269,7 @@ body {
     justify-content: center;
     opacity: 0;
     transform: translateY(30px);
-    overflow: hidden;
+    overflow: visible;
     overflow-y: auto;
 }
 
@@ -294,7 +295,8 @@ body {
     width: 320px;
     flex-shrink: 0;
     max-height: none;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y:auto;
 }
 
 .widget {
@@ -579,7 +581,7 @@ body {
     max-height: none;
     display: flex;
     justify-content: center;
-    overflow: hidden
+    overflow: visible;
 }
 
 .profile-card {
