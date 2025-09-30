@@ -115,6 +115,7 @@ function toggleAudio() {
 }
 
 function initializeMainSite() {
+    initializeStarfield();
     initializeTypingEffect();
     initializeLastSeen();
     updateDiscordStatus();
@@ -124,6 +125,55 @@ function initializeMainSite() {
     setInterval(updateSpotifyStatus, CONFIG.SPOTIFY_UPDATE_INTERVAL);
     setInterval(updateLastSeen, 60000);
     setInterval(updateSpotifyProgress, 1000);
+}
+
+function initializeStarfield() {
+    const starfield = document.getElementById('starfield');
+    if (!starfield) return;
+
+    // Clear existing stars
+    starfield.innerHTML = '';
+
+    // Star generation configuration
+    const starConfig = {
+        small: { count: 80, class: 'small' },
+        medium: { count: 40, class: 'medium' },
+        large: { count: 20, class: 'large' },
+        extraLarge: { count: 8, class: 'extra-large' }
+    };
+
+    // Generate stars of different sizes
+    Object.values(starConfig).forEach(config => {
+        for (let i = 0; i < config.count; i++) {
+            createStar(starfield, config.class);
+        }
+    });
+
+    console.log('Dynamic starfield initialized with', 
+        Object.values(starConfig).reduce((sum, config) => sum + config.count, 0), 'stars');
+}
+
+function createStar(container, sizeClass) {
+    const star = document.createElement('div');
+    star.className = `star ${sizeClass}`;
+    
+    // Random position
+    const x = Math.random() * 100;
+    const y = Math.random() * 100;
+    star.style.left = `${x}%`;
+    star.style.top = `${y}%`;
+    
+    // Random animation delay to create variety
+    const delay = Math.random() * 4;
+    star.style.animationDelay = `${delay}s`;
+    
+    // Add slight random hue variations for some stars
+    if (Math.random() > 0.85) {
+        const hue = Math.random() * 60 + 180; // Blue to cyan range
+        star.style.filter = `hue-rotate(${hue}deg)`;
+    }
+    
+    container.appendChild(star);
 }
 
 function initializeTypingEffect() {
@@ -384,6 +434,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeCursor();
     initializeEntryPage();
     initializeSocialLinks();
+    // Initialize starfield immediately when page loads
+    initializeStarfield();
 });
 
 /*const CONFIG = {

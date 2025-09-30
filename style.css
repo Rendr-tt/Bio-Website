@@ -175,6 +175,167 @@ body {
     50% { opacity: 1; }
 }
 
+/* Enhanced Dynamic Starfield */
+.starfield {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background: radial-gradient(ellipse at center, #0a0a0a 0%, #000000 70%);
+    overflow: hidden;
+}
+
+/* Dynamic star classes */
+.star {
+    position: absolute;
+    background: #ffffff;
+    border-radius: 50%;
+    animation: twinkle 4s ease-in-out infinite;
+    opacity: 0.8;
+}
+
+.star.small {
+    width: 1px;
+    height: 1px;
+    opacity: 0.4;
+    animation: twinkle 3s ease-in-out infinite, float-small 8s ease-in-out infinite;
+}
+
+.star.medium {
+    width: 2px;
+    height: 2px;
+    opacity: 0.7;
+    animation: twinkle 2.5s ease-in-out infinite, float-medium 12s ease-in-out infinite;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+}
+
+.star.large {
+    width: 3px;
+    height: 3px;
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.4);
+    animation: twinkle 2s ease-in-out infinite, float-large 15s ease-in-out infinite;
+}
+
+.star.extra-large {
+    width: 4px;
+    height: 4px;
+    opacity: 0.9;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.9), 
+                0 0 30px rgba(255, 255, 255, 0.5), 
+                0 0 45px rgba(255, 255, 255, 0.2);
+    animation: twinkle 1.8s ease-in-out infinite, 
+               float-extra-large 20s ease-in-out infinite,
+               pulse-glow 4s ease-in-out infinite;
+}
+
+/* Enhanced twinkle animations */
+@keyframes twinkle {
+    0%, 100% { 
+        opacity: 0.2;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes float-small {
+    0%, 100% { transform: translateY(0px) translateX(0px); }
+    25% { transform: translateY(-5px) translateX(2px); }
+    75% { transform: translateY(3px) translateX(-1px); }
+}
+
+@keyframes float-medium {
+    0%, 100% { transform: translateY(0px) translateX(0px); }
+    25% { transform: translateY(-8px) translateX(4px); }
+    75% { transform: translateY(5px) translateX(-3px); }
+}
+
+@keyframes float-large {
+    0%, 100% { transform: translateY(0px) translateX(0px); }
+    25% { transform: translateY(-12px) translateX(6px); }
+    75% { transform: translateY(8px) translateX(-4px); }
+}
+
+@keyframes float-extra-large {
+    0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+    25% { transform: translateY(-15px) translateX(8px) rotate(90deg); }
+    75% { transform: translateY(10px) translateX(-6px) rotate(180deg); }
+}
+
+@keyframes pulse-glow {
+    0%, 100% { 
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.9), 
+                    0 0 30px rgba(255, 255, 255, 0.5), 
+                    0 0 45px rgba(255, 255, 255, 0.2);
+    }
+    50% { 
+        box-shadow: 0 0 25px rgba(255, 255, 255, 1), 
+                    0 0 50px rgba(255, 255, 255, 0.8), 
+                    0 0 75px rgba(255, 255, 255, 0.4);
+    }
+}
+
+/* Shooting star enhancements */
+.shooting-star {
+    position: absolute;
+    top: 20%;
+    left: -5%;
+    width: 2px;
+    height: 2px;
+    background: linear-gradient(45deg, #ffffff, rgba(255, 255, 255, 0));
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    animation: shoot-enhanced 8s ease-in-out infinite;
+}
+
+.shooting-star:nth-child(2) {
+    top: 30%;
+    animation-delay: 2s;
+    animation-duration: 6s;
+}
+
+.shooting-star:nth-child(3) {
+    top: 60%;
+    animation-delay: 4s;
+    animation-duration: 10s;
+}
+
+.shooting-star:nth-child(4) {
+    top: 10%;
+    animation-delay: 6s;
+    animation-duration: 7s;
+}
+
+.shooting-star:nth-child(5) {
+    top: 80%;
+    animation-delay: 8s;
+    animation-duration: 9s;
+}
+
+@keyframes shoot-enhanced {
+    0% {
+        transform: translateX(0) translateY(0) rotate(45deg) scale(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+        transform: translateX(50px) translateY(50px) rotate(45deg) scale(1);
+    }
+    90% {
+        opacity: 1;
+        transform: translateX(120vw) translateY(50vh) rotate(45deg) scale(1);
+    }
+    100% {
+        transform: translateX(130vw) translateY(60vh) rotate(45deg) scale(0);
+        opacity: 0;
+    }
+}
+
 .main-container {
     display: flex;
     min-height: 100vh;
