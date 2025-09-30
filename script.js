@@ -169,30 +169,41 @@ function initializeEntryPage() {
             mainSite.style.display = 'block';
             
             initializeMainSite();
-        }, 800);  
+        }, 800);
     });
-    
+
     function toggleAudio() {
-    if (backgroundMusic.paused) {
-        backgroundMusic.muted = false;
-        backgroundMusic.play().then(() => {
-            console.log("Music resumed.");
-            audioIcon.className = "fas fa-volume-up";
-            audioControl.classList.remove("muted");
-        }).catch(err => console.log("Error resuming:", err));
-    } else {
-        backgroundMusic.pause();
-        backgroundMusic.muted = true;
-        console.log("Music paused.");
-        audioIcon.className = "fas fa-volume-mute";
-        audioControl.classList.add("muted");
+        const audioControl = document.getElementById('audio-control');
+        const audioIcon = document.getElementById('audio-icon');
+        
+        isMuted = !isMuted;
+        
+        if (isMuted) {
+            if (backgroundMusic) {
+                backgroundMusic.pause();
+            }
+            audioIcon.className = 'fas fa-volume-mute';
+            audioControl.classList.add('muted');
+            console.log('Musique coupée');
+        } else {
+            if (backgroundMusic && hasEnteredSite) {
+                const playPromise = backgroundMusic.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        console.log('Musique remise');
+                    }).catch(error => {
+                        console.log('Erreur lors de la remise de la musique:', error);
+                    });
+                }
+            }
+            audioIcon.className = 'fas fa-volume-up';
+            audioControl.classList.remove('muted');
+        }
     }
-    
-
 }
 
 
-}
+
 
 
 function initializeMainSite() {
