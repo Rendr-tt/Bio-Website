@@ -89,9 +89,18 @@ function initializeEntryPage() {
         }
 
         entryPage.classList.add('fade-out');
+        
+        // Smooth transition to main site
         setTimeout(() => {
             entryPage.style.display = 'none';
             mainSite.style.display = 'block';
+            mainSite.classList.add('fade-in');
+            
+            // Trigger smooth animations
+            setTimeout(() => {
+                triggerSiteAnimations();
+            }, 100);
+            
             initializeMainSite();
         }, 800);
     });
@@ -114,8 +123,37 @@ function toggleAudio() {
     }
 }
 
+function triggerSiteAnimations() {
+    // Trigger main container animation
+    const mainContainer = document.querySelector('.main-container');
+    if (mainContainer) mainContainer.classList.add('animate');
+    
+    // Trigger widget animations
+    document.querySelectorAll('.widget').forEach(widget => {
+        widget.classList.add('animate');
+    });
+    
+    // Trigger profile animations
+    const profileCard = document.querySelector('.profile-card');
+    if (profileCard) profileCard.classList.add('animate');
+    
+    const profileHeader = document.querySelector('.profile-header');
+    if (profileHeader) profileHeader.classList.add('animate');
+    
+    // Trigger social links animations
+    const socialLinks = document.querySelector('.social-links');
+    if (socialLinks) socialLinks.classList.add('animate');
+    
+    document.querySelectorAll('.social-link').forEach(link => {
+        link.classList.add('animate');
+    });
+    
+    // Trigger footer animation
+    const footer = document.querySelector('.footer');
+    if (footer) footer.classList.add('animate');
+}
+
 function initializeMainSite() {
-    initializeStarfield();
     initializeTypingEffect();
     initializeLastSeen();
     updateDiscordStatus();
@@ -434,7 +472,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeCursor();
     initializeEntryPage();
     initializeSocialLinks();
-    // Initialize starfield immediately when page loads
+    // Initialize starfield immediately when page loads to prevent background glitch
     initializeStarfield();
 });
 
