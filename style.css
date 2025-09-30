@@ -26,6 +26,17 @@
   box-sizing: border-box;
 }
 
+
+
+body, * {
+    cursor: none !important;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
   min-height: 100vh;
   background: linear-gradient(to bottom, #000000, #000000 70%, #000000);
@@ -34,7 +45,11 @@ body {
   height: auto;
   max-height: 100vh;
 
+body {
+    cursor: none;
 }
+    
+
 
 .stars {
   width: 4px;
@@ -595,6 +610,7 @@ body {
 .status-dot.dnd { background: var(--discord-dnd); }
 .status-dot.offline { background: var(--discord-offline); }
 
+
 .status-text {
     font-size: 14px;
     color: var(--text-secondary);
@@ -733,9 +749,7 @@ body {
     box-sizing: border-box;
 }
 
-.main-site * {
-    cursor: none !important;
-}
+
 
 .entry-page {
     position: fixed;
@@ -815,52 +829,37 @@ body {
     color: #ff4444;
 }
 
-.cursor {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 24px;
-    height: 24px;
-    pointer-events: none;
-    z-index: 99999;
-    mix-blend-mode: difference;
+#customCursor {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(255,255,255,0.6),
+              0 0 16px rgba(255,255,255,0.4),
+              0 0 24px rgba(255,255,255,0.2);
+   transition: transform 0.08s ease-out, width 0.15s ease, height 0.15s ease, opacity 0.2s ease;
+   z-index: 10000;
+   opacity: 0.9;
 }
 
-.cursor-dot {
-    width: 4px;
-    height: 4px;
-    background: white;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: all 0.1s ease;
+
+#customCursor.hover {
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.8), 0 0 24px rgba(255, 255, 255, 0.6), 0 0 36px rgba(255, 255, 255, 0.4);
+    opacity: 1;
 }
 
-.cursor-ring {
-    width: 24px;
-    height: 24px;
-    border: 1px solid white;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: all 0.3s ease;
-    opacity: 0.6;
+#customCursor.click {
+    width: 15px;
+    height: 15px;
+    background: #43b581;
+    box-shadow: 0 0 10px rgba(67, 181, 129, 0.8), 0 0 20px rgba(67, 181, 129, 0.6), 0 0 30px rgba(67, 181, 129, 0.4);
 }
 
-.cursor.hover .cursor-dot {
-    width: 6px;
-    height: 6px;
-}
-
-.cursor.hover .cursor-ring {
-    width: 40px;
-    height: 40px;
-    opacity: 0.8;
-}
 
 
 @media (max-width: 1200px) {
@@ -1024,3 +1023,39 @@ body {
     background: rgba(255, 255, 255, 0.05);
 
 }
+}
+/*.cursor-dot {
+/*    width: 4px;
+/*    height: 4px;
+/*    background: white;
+/*    border-radius: 50%;
+/*    position: absolute;
+/*    top: 50%;
+/*    left: 50%;
+/*    transform: translate(-50%, -50%);
+/*    transition: all 0.1s ease;
+/*}
+/*
+/*.cursor-ring {
+/*    width: 24px;
+/*    height: 24px;
+/*    border: 1px solid white;
+/*    border-radius: 50%;
+/*    position: absolute;
+/*    top: 50%;
+/*    left: 50%;
+/*    transform: translate(-50%, -50%);
+/*    transition: all 0.3s ease;
+/*    opacity: 0.6;
+/*}
+/*
+/*.cursor.hover .cursor-dot {
+/*    width: 6px;
+/*    height: 6px;
+/*}
+/*
+/*.cursor.hover .cursor-ring {
+/*    width: 40px;
+/*    height: 40px;
+/*    opacity: 0.8;
+/*}
