@@ -269,6 +269,7 @@ body {
     opacity: 0;
     transform: translateY(30px);
     overflow: hidden;
+    overflow-y: auto;
 }
 
 .main-container.animate {
