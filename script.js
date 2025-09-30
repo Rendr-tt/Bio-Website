@@ -76,8 +76,8 @@ function initializeEntryPage() {
     const entryPage = document.getElementById('entry-page');
     const entryButton = document.getElementById('entry-button');
     const mainSite = document.getElementById('main-site');
-    let audioControl = document.getElementById('audio-control');
-    let audioIcon = document.getElementById('audio-icon');
+    const audioControl = document.getElementById('audio-control');
+    const audioIcon = document.getElementById('audio-icon');
     
     backgroundMusic = document.getElementById('background-music');
     backgroundMusic.volume = 0.8; // Set volume to 80%
@@ -86,7 +86,6 @@ function initializeEntryPage() {
         e.stopPropagation();
         toggleAudio();
     });
-    
     
     entryButton.addEventListener('click', function() {
         if (hasEnteredSite) return;
@@ -100,9 +99,9 @@ function initializeEntryPage() {
             const playPromise = backgroundMusic.play();
             if (playPromise !== undefined) {
                 playPromise.then(() => {
-                    console.log('Music started successfully.');
+                    console.log('Musique démarrée avec succès');
                 }).catch(error => {
-                    console.log('error:', error);
+                    console.log('Erreur lors du démarrage de la musique:', error);
                 });
             }
             
@@ -122,7 +121,55 @@ function initializeEntryPage() {
             
             initializeMainSite();
         }, 800);
+function initializeEntryPage() {
+    const entryPage = document.getElementById('entry-page');
+    const entryButton = document.getElementById('entry-button');
+    const mainSite = document.getElementById('main-site');
+    const audioControl = document.getElementById('audio-control');
+    const audioIcon = document.getElementById('audio-icon');
+    
+    backgroundMusic = document.getElementById('background-music');
+    backgroundMusic.volume = 0.8; // Set volume to 80%
+    
+    audioControl.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleAudio();
+    });
+    
+    entryButton.addEventListener('click', function() {
+        if (hasEnteredSite) return;
+        hasEnteredSite = true;
         
+        audioControl.classList.add('visible');
+        
+        if (backgroundMusic && !isMuted) {
+            backgroundMusic.currentTime = 0;
+            
+            const playPromise = backgroundMusic.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    console.log('Musique démarrée avec succès');
+                }).catch(error => {
+                    console.log('Erreur lors du démarrage de la musique:', error);
+                });
+            }
+            
+            backgroundMusic.addEventListener('ended', function() {
+                if (!isMuted) {
+                    this.currentTime = 0;
+                    this.play();
+                }
+            });
+        }
+        
+        entryPage.classList.add('fade-out');
+        
+        setTimeout(() => {
+            entryPage.style.display = 'none';
+            mainSite.style.display = 'block';
+            
+            initializeMainSite();
+        }, 800);  
     });
     
     function toggleAudio() {
