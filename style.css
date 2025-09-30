@@ -303,21 +303,21 @@ body {
     padding: 24px;
     backdrop-filter: blur(20px);
     box-shadow: 0 8px 32px var(--shadow-dark);
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
     opacity: 0;
     transform: translateX(-60px) translateY(20px) scale(0.95);
 }
 
 .widget.animate {
-    animation: widgetFadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: widgetFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .widget.animate:nth-child(1) {
-    animation-delay: 0.6s;
+    animation-delay: 0.5s;
 }
 
 .widget.animate:nth-child(2) {
-    animation-delay: 0.9s;
+    animation-delay: 0.8s;
 }
 
 .widget:hover {
@@ -1101,7 +1101,7 @@ body {
     
     .widget {
         flex: 1;
-        animation: fadeInUp 1s ease-out;
+        animation: fadeInUp 0.5s ease-out;
     }
 }
 
